@@ -1,96 +1,39 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boutons Toggle</title>
+<title>Boutons</title>
 <style>
-    /* Style pour les boutons */
     .button-row {
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 20px;
     }
 
     .button-row button {
-        flex: 1 0 calc(12.5% - 10px); /* Répartit les boutons sur 8 colonnes avec un petit espacement */
-        margin: 5px;
-    }
-
-    /* Style pour les boutons actifs */
-    .active {
-        background-color: #FF5733; /* Couleur rouge */
-    }
-
-    /* Style pour le cadre de texte */
-    #output {
-        width: 90%;
+        flex: 0 0 calc((100% / 8) - 16px); /* Définit la largeur de chaque bouton */
+        margin-right: 2px;
+        margin-top: 10px;
         padding: 10px;
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        min-height: 50px;
+        border: none;
+        background-color: #3498db;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.1s ease;
     }
 </style>
 </head>
 <body>
 
 <div class="button-row">
-    <!-- Boutons -->
-    <button id="buttonAlicia" onclick="toggleButton('Alicia')">Alicia</button>
-    <button id="buttonMyriam" onclick="toggleButton('Myriam')">Myriam</button>
-    <button id="buttonJanice" onclick="toggleButton('Janice')">Janice</button>
-    <!-- Ajoutez les autres boutons ici -->
-    ...
+    <button onclick="window.location.href='https://MathsGarrigues.github.io/5e5.php'">5e5</button>
+    <button onclick="window.location.href='https://github.com/mathsgarrigues/votre-projet/blob/main/5e6.md'">5e6</button>
+    <button onclick="window.location.href='https://github.com/mathsgarrigues/votre-projet/blob/main/5e7.md'">5e7</button>
+    <button onclick="window.location.href='https://github.com/mathsgarrigues/votre-projet/blob/main/4e2.md'">4e2</button>
+    <button onclick="window.location.href='https://github.com/mathsgarrigues/votre-projet/blob/main/4e4.md'">4e4</button>
 </div>
-
-<button onclick="valider()">Valider</button>
-<div id="output"></div>
-
-<script>
-var buttonsClicked = {};
-var buttonsClickedBeforeValidation = {}; // Pour garder une trace des boutons cliqués avant d'appuyer sur "Valider"
-
-function toggleButton(buttonName) {
-    var button = document.getElementById("button" + buttonName);
-    
-    // Vérifier si le bouton est actif ou non
-    var isActive = button.classList.contains("active");
-
-    // Stocker la valeur précédente avant de la modifier
-    var previousValue = buttonsClicked[buttonName] || 0;
-
-    // Mettre à jour le tableau des boutons cliqués
-    if (isActive) {
-        buttonsClicked[buttonName] = previousValue + 1;
-    } else {
-        buttonsClicked[buttonName] = previousValue - 1;
-    }
-
-    // Toggle la classe 'active' pour le bouton
-    button.classList.toggle("active");
-
-    // Mettre à jour le tableau des boutons cliqués avant d'appuyer sur "Valider"
-    if (!isActive && Object.keys(buttonsClickedBeforeValidation).length === 0) {
-        buttonsClickedBeforeValidation[buttonName] = previousValue;
-    }
-}
-
-function deselectAllButtons() {
-    var buttonElements = document.querySelectorAll('.button-row button');
-    buttonElements.forEach(function(button) {
-        button.classList.remove('active');
-    });
-}
-
-function valider() {
-    deselectAllButtons(); // Déselectionner tous les boutons
-    var output = document.getElementById("output");
-    var buttonsList = Object.keys(buttonsClicked).map(function(key) {
-        // Afficher la valeur du bouton
-        return key + ": " + buttonsClicked[key];
-    });
-    output.textContent = buttonsList.join("\n");
-}
-</script>
 
 </body>
 </html>
